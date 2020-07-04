@@ -16,6 +16,7 @@ In this markdown, you will learn about the technologies and architecture of some
     - [Core Actions](#core-actions)
   - [Async Actions](#async-actions)
 - [Abstract view of Syncing](#abstract-view-of-syncing)
+  - [Broadcasting](#broadcasting)
 - [What happen when Action fired](#what-happen-when-action-fired)
 - [Service Worker in MISchool](#service-worker-in-mischool)
   - [Abstract workflow of SW](#abstract-workflow-of-sw)
@@ -337,9 +338,19 @@ How a state manipulated by createMerges() or createDeletes encoded as an action 
 
 ## Abstract view of Syncing
 
-To achieve `real-time` functionality in `MISchool` and `IlmExchange`, syncing played a great role. In the following diagram, it's an abstract view of how does syncing happen
+To achieve `real-time` functionality in `MISchool` and `IlmExchange`, syncing played an import role. In the following diagram, it's an abstract view of how does syncing happen among the connected clients.
+
+![abstract-syncing](./abstract-syncing.png)
+
+### Broadcasting
+
+> In progress
 
 ## What happen when Action Fired
+
+Let's say we want to reset fees for student in `MISchool`, following diagram shows what happen behind the scene when we press `reset fee` button.
+
+![when an action fired](./when-an-action-fired.png)
 
 ## Service Worker in MISchool
 
