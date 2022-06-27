@@ -132,14 +132,14 @@ These actions can be futher categorized into `Core` and `Simple` (based on core 
     payments: {}
   }
 
-  const merge = [
+  const merges = [
     {
       path: ["db", "students", student.id],
       value: student
     }
   ]
 
-  dispatch(createMerges(merge))
+  dispatch(createMerges(merges))
   ```
 
   After the merge action, state changes from `A` => `B` with a new student of `id:2`
@@ -176,14 +176,14 @@ These actions can be futher categorized into `Core` and `Simple` (based on core 
     time: 1593806556000
   }
 
-  const merge = [
+  const merges = [
     {
       path: ["db", "students", student_id, "attendance", attendance.date],
       value: attendance
     }
   ]
 
-  dispatch(createMerges(merge))
+  dispatch(createMerges(merges))
   ```
 
   After the 2nd merge action, state changes from `B` => `C` with an attendance entry of student `id:2`
@@ -204,9 +204,11 @@ These actions can be futher categorized into `Core` and `Simple` (based on core 
         Name: "XYZ",
         Gender: "M",
         "attendance": {
-          date: "04-07-2020",
-          status: "PRESENT",
-          time: 1593806556000
+          ["04-07-2020"]: {
+            date: "04-07-2020",
+            status: "PRESENT",
+            time: 1593806556000
+          }
         }
       }
     }
@@ -232,12 +234,12 @@ These actions can be futher categorized into `Core` and `Simple` (based on core 
 
   ```ts
   const student_id = 1
-  const delete = [
+  const deletes = [
     {
       path: ["db", "students", student_id]
     }
   ]
-  dispatch(createDeletes(delete))
+  dispatch(createDeletes(deletes))
   ```
 
   After a `createDeletes()` action, state changes from `C` => `D`, deleted student with `id:1`
@@ -252,9 +254,11 @@ These actions can be futher categorized into `Core` and `Simple` (based on core 
           Name: "XYZ",
           Gender: "M",
         "attendance": {
-            date: "04-07-2020",
-            status: "PRESENT",
-            time: 1593806556000
+            ["04-07-2020"]: {
+              date: "04-07-2020",
+              status: "PRESENT",
+              time: 1593806556000
+            }
           }
         }
       }
