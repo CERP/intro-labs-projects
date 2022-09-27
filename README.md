@@ -3,25 +3,10 @@ author: Mudassar
 title: An Overview of Labs project
 ---
 
-# Intro to LABS projects
+# Intro to Labs projects
 
-In this markdown, you will learn about the technologies and architecture of some of `Labs` projects. You can find all the projects at [CERP Github](https://github.com/cerp) organization.
+In this markdown, you will learn about the technologies and architecture of some of `Labs` projects. You can find all the projects at [CERP GitHub](https://github.com/cerp) organization.
 
-## Table of Content
-
-- [Technologies](#technologies)
-- [Tools We Built](#tools-we-built)
-- [Projects Overview](#projects-overview)
-  - [Actions](#actions)
-    - [Core Actions](#core-actions)
-  - [Async Actions](#async-actions)
-- [Abstract view of Syncing](#abstract-view-of-syncing)
-  - [Broadcasting](#broadcasting)
-- [What happen when Action fired](#what-happen-when-action-fired)
-- [Service Worker in MISchool](#service-worker-in-mischool)
-  - [Abstract workflow of SW](#abstract-workflow-of-sw)
-  - [Check if an update is available](#check-if-an-update-is-available)
-- [Code Formatting and Linting](#code-formatting-and-linting)
 
 ## Technologies
 
@@ -32,11 +17,11 @@ We're building system using latest technologies, here's the list but we're not l
   - Javascript
   - Typescript
   - ReactJS + Redux
-  - MaterialUI
+  - MaterialUI, Tailwindcss
 
 - **Backend**
 
-  - Elixir
+  - Elixir, NodeJS
   - Postgres
 
 - **Platform**
@@ -53,19 +38,19 @@ Here are some tools that we build which are currently used in most of our projec
 
   Make `asynchronous` requests to a server over WebSocket/Http connection
 
-  [Learn More](./syncr.md)
+  [Learn More](./projects/syncr.md)
 
 - **Former**
 
   Handle `HTMLFormEvents` and mutate the state. Currently support `class` based components
 
-  [Learn More](./former.md)
+  [Learn More](./projects/former.md)
   
 - **Dynamic**
 
   Provide useful tooling to manipulate the complex `Objects` (JS) and `Maps` (Elixir)
 
-  [Learn More](./dynamic.md)
+  [Learn More](./projects/dynamic.md)
 
 ## Projects overview
 
@@ -325,7 +310,7 @@ How a state manipulated by createMerges() or createDeletes encoded as an action 
 
   Here's what `RootReducerState` looks like
 
-  ![root reducer state](./root-reducer-state.png)
+  ![root reducer state](./screenshots/root-reducer-state.png)
 
 - `Step-4`: Send payload to server using `Syncr`
 
@@ -344,7 +329,7 @@ How a state manipulated by createMerges() or createDeletes encoded as an action 
 
 To achieve `real-time` functionality in `MISchool` and `IlmExchange`, syncing played an import role. In the following diagram, it's an abstract view of how does syncing happen among the connected clients.
 
-![abstract-syncing](./abstract-syncing.png)
+![abstract-syncing](./screenshots/abstract-syncing.png)
 
 ### Broadcasting
 
@@ -354,7 +339,7 @@ To achieve `real-time` functionality in `MISchool` and `IlmExchange`, syncing pl
 
 Let's say we want to reset fees for student in `MISchool`, following diagram shows what happen behind the scene when we press `reset fee` button.
 
-![when an action fired](./when-an-action-fired.png)
+![when an action fired](./screenshots/when-an-action-fired.png)
 
 ## Service Worker in MISchool
 
@@ -368,7 +353,7 @@ Service worker allows you to support `offline` experiences, giving engineers and
 
 ### Abstract Workflow of SW
 
-![service worker](./service-worker.png)
+![service worker](./screenshots/service-worker.png)
 
 For MISchool, we're using [`WorkBox`](https://developers.google.com/web/tools/workbox), a high-level set of libraries. It provides a solid foundation for any service worker's `caching`, `routing`, and `response` generation logic. Currently we're intercepting follow URLs with image caching (using `CacheFirst`) to support `MISchool` offline-first user experience.
 
@@ -399,7 +384,7 @@ For MISchool, we're using [`WorkBox`](https://developers.google.com/web/tools/wo
 For `MISchool` we're adopting `CacheFirst` (fetch from cache, but also fetch from network and update cache) strategy. We can hook into `onupdatefound` function on the registered Service Worker. Even though we can cache tons of files, the Service Worker only checks the `hash` of registered service-worker.js. If that file has only `1 little change` in it, it will be treated as a new version.
 Here's simple demonstration of Cache First strategy:
 
-![cache-first-strategy](./cache-first-strategy.png)
+![cache-first-strategy](./screenshots/cache-first-strategy.png)
 
 <p style="text-align:center;">The cache access failed and the Service Worker uses the network as a fallback.</p>
 
